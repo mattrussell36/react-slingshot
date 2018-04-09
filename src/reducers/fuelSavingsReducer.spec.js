@@ -1,4 +1,7 @@
-import * as ActionTypes from '../constants/actionTypes';
+import {
+  SAVE_FUEL_SAVINGS,
+  CALCULATE_FUEL_SAVINGS
+} from '../actions/fuelSavingsActions';
 import reducer from './fuelSavingsReducer';
 import {getFormattedDateTime} from '../utils/dates';
 
@@ -50,14 +53,14 @@ describe('Reducers::FuelSavings', () => {
   });
 
   it('should handle SAVE_FUEL_SAVINGS', () => {
-    const action = { type: ActionTypes.SAVE_FUEL_SAVINGS, dateModified, settings: getAppState() };
+    const action = { type: SAVE_FUEL_SAVINGS, dateModified, settings: getAppState() };
     const expected = Object.assign(getAppState(), { dateModified });
 
     expect(reducer(getAppState(), action)).toEqual(expected);
   });
 
   it('should handle CALCULATE_FUEL_SAVINGS', () => {
-    const action = { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: getAppState(), fieldName: 'newMpg', value: 30 };
+    const action = { type: CALCULATE_FUEL_SAVINGS, dateModified, settings: getAppState(), fieldName: 'newMpg', value: 30 };
 
     const expectedMpg = 30;
     const expectedSavings = { monthly: '$43.33', annual: '$519.96', threeYear: '$1,559.88' };

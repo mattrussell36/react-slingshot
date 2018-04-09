@@ -1,5 +1,9 @@
-import * as ActionTypes from '../constants/actionTypes';
-import * as ActionCreators from './fuelSavingsActions';
+import {
+  SAVE_FUEL_SAVINGS,
+  CALCULATE_FUEL_SAVINGS,
+  saveFuelSavings,
+  calculateFuelSavings
+} from './fuelSavingsActions';
 
 import MockDate from 'mockdate';
 
@@ -33,15 +37,15 @@ describe('Actions', () => {
   it('should create an action to save fuel savings', () => {
     const dispatch = jest.fn();
     const expected = {
-      type: ActionTypes.SAVE_FUEL_SAVINGS,
+      type: SAVE_FUEL_SAVINGS,
       dateModified,
       settings: appState
     };
 
     // we expect this to return a function since it is a thunk
-    expect(typeof (ActionCreators.saveFuelSavings(appState))).toEqual('function');
+    expect(typeof (saveFuelSavings(appState))).toEqual('function');
     // then we simulate calling it with dispatch as the store would do
-    ActionCreators.saveFuelSavings(appState)(dispatch);
+    saveFuelSavings(appState)(dispatch);
     // finally assert that the dispatch was called with our expected action
     expect(dispatch).toBeCalledWith(expected);
   });
@@ -49,9 +53,9 @@ describe('Actions', () => {
   it('should create an action to calculate fuel savings', () => {
     const fieldName = 'newMpg';
     const value = 100;
-    const actual = ActionCreators.calculateFuelSavings(appState, fieldName, value);
+    const actual = calculateFuelSavings(appState, fieldName, value);
     const expected = {
-      type: ActionTypes.CALCULATE_FUEL_SAVINGS,
+      type: CALCULATE_FUEL_SAVINGS,
       dateModified,
       settings: appState,
       fieldName,
