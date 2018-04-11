@@ -35,19 +35,14 @@ describe('Actions', () => {
   };
 
   it('should create an action to save fuel savings', () => {
-    const dispatch = jest.fn();
+    const actual = saveFuelSavings(appState);
     const expected = {
       type: SAVE_FUEL_SAVINGS,
       dateModified,
       settings: appState
     };
 
-    // we expect this to return a function since it is a thunk
-    expect(typeof (saveFuelSavings(appState))).toEqual('function');
-    // then we simulate calling it with dispatch as the store would do
-    saveFuelSavings(appState)(dispatch);
-    // finally assert that the dispatch was called with our expected action
-    expect(dispatch).toBeCalledWith(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should create an action to calculate fuel savings', () => {

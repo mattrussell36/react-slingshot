@@ -57,7 +57,7 @@ const FuelSavingsForm = ({fuelSavings, onSaveClick, onChange}) => (
     <hr/>
 
     {fuelSavings.necessaryDataIsProvidedToCalculateSavings && <FuelSavingsResults savings={fuelSavings.savings}/>}
-    <input type="submit" value="Save" onClick={onSaveClick}/>
+    <input type="submit" value="Save" disabled={fuelSavings.isSaving} onClick={onSaveClick}/>
   </div>
 );
 

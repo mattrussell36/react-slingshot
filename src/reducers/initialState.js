@@ -13,6 +13,7 @@ export default {
       monthly: 0,
       annual: 0,
       threeYear: 0
-    }
+    },
+    isSaving: false,
   }
 };

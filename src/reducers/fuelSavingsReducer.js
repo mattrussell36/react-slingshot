@@ -1,5 +1,6 @@
 import {
   SAVE_FUEL_SAVINGS,
+  SAVE_FUEL_SAVINGS_SUCCESS,
   CALCULATE_FUEL_SAVINGS
 } from '../actions/fuelSavingsActions';
 import {necessaryDataIsProvidedToCalculateSavings, calculateSavings} from '../utils/fuelSavings';
@@ -13,13 +14,16 @@ import initialState from './initialState';
 // and update values on the copy.
 export default function fuelSavingsReducer(state = initialState.fuelSavings, action) {
   let newState;
-
   switch (action.type) {
     case SAVE_FUEL_SAVINGS:
-      // For this example, just simulating a save by changing date modified.
-      // In a real app using Redux, you might use redux-thunk and handle the async call in fuelSavingsActions.js
-      return objectAssign({}, state, {dateModified: action.dateModified});
-
+      newState = objectAssign({}, state);
+      newState.dateModified = action.dateModified;
+      newState.isSaving = true;
+      return newState;
+    case SAVE_FUEL_SAVINGS_SUCCESS:
+      newState = objectAssign({}, state);
+      newState.isSaving = false;
+      return newState;
     case CALCULATE_FUEL_SAVINGS:
       newState = objectAssign({}, state);
       newState[action.fieldName] = action.value;

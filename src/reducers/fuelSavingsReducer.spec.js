@@ -21,7 +21,8 @@ describe('Reducers::FuelSavings', () => {
         monthly: 0,
         annual: 0,
         threeYear: 0
-      }
+      },
+      isSaving: false,
     };
   };
 
@@ -40,7 +41,8 @@ describe('Reducers::FuelSavings', () => {
         monthly: 0,
         annual: 0,
         threeYear: 0
-      }
+      },
+      isSaving: false,
     };
   };
   const dateModified = getFormattedDateTime();
@@ -54,7 +56,10 @@ describe('Reducers::FuelSavings', () => {
 
   it('should handle SAVE_FUEL_SAVINGS', () => {
     const action = { type: SAVE_FUEL_SAVINGS, dateModified, settings: getAppState() };
-    const expected = Object.assign(getAppState(), { dateModified });
+    const expected = Object.assign(getAppState(), { 
+      dateModified,
+      isSaving: true,
+    });
 
     expect(reducer(getAppState(), action)).toEqual(expected);
   });

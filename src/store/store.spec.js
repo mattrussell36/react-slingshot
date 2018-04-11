@@ -42,7 +42,8 @@ describe('Store', () => {
       displayResults: false,
       dateModified,
       necessaryDataIsProvidedToCalculateSavings: true,
-      savings: calculateSavings(store.getState().fuelSavings)
+      savings: calculateSavings(store.getState().fuelSavings),
+      isSaving: false,
     };
 
     expect(actual.fuelSavings).toEqual(expected);
@@ -74,7 +75,8 @@ describe('Store', () => {
       displayResults: false,
       dateModified,
       necessaryDataIsProvidedToCalculateSavings: false,
-      savings: { annual: 0, monthly: 0, threeYear: 0 }
+      savings: { annual: 0, monthly: 0, threeYear: 0 },
+      isSaving: false,
     };
 
     expect(actual.fuelSavings).toEqual(expected);
